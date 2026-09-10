@@ -18,6 +18,7 @@ import { Route as AuthenticatedApprovalsRouteImport } from './routes/_authentica
 import { Route as AuthenticatedCalendarRouteImport } from './routes/_authenticated/calendar'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedInboxRouteImport } from './routes/_authenticated/inbox'
+import { Route as AuthenticatedPublishedRouteImport } from './routes/_authenticated/published'
 import { Route as AuthenticatedStudioIndexRouteImport } from './routes/_authenticated/studio.index'
 import { Route as AuthenticatedStudioPostIdRouteImport } from './routes/_authenticated/studio.$postId'
 
@@ -65,6 +66,11 @@ const AuthenticatedInboxRoute = AuthenticatedInboxRouteImport.update({
   path: '/inbox',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedPublishedRoute = AuthenticatedPublishedRouteImport.update({
+  id: '/published',
+  path: '/published',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedStudioIndexRoute =
   AuthenticatedStudioIndexRouteImport.update({
     id: '/studio/',
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/calendar': typeof AuthenticatedCalendarRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/inbox': typeof AuthenticatedInboxRoute
+  '/published': typeof AuthenticatedPublishedRoute
   '/studio/$postId': typeof AuthenticatedStudioPostIdRoute
   '/studio/': typeof AuthenticatedStudioIndexRoute
 }
@@ -99,6 +106,7 @@ export interface FileRoutesByTo {
   '/calendar': typeof AuthenticatedCalendarRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/inbox': typeof AuthenticatedInboxRoute
+  '/published': typeof AuthenticatedPublishedRoute
   '/studio/$postId': typeof AuthenticatedStudioPostIdRoute
   '/studio': typeof AuthenticatedStudioIndexRoute
 }
@@ -113,6 +121,7 @@ export interface FileRoutesById {
   '/_authenticated/calendar': typeof AuthenticatedCalendarRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/inbox': typeof AuthenticatedInboxRoute
+  '/_authenticated/published': typeof AuthenticatedPublishedRoute
   '/_authenticated/studio/$postId': typeof AuthenticatedStudioPostIdRoute
   '/_authenticated/studio/': typeof AuthenticatedStudioIndexRoute
 }
@@ -127,6 +136,7 @@ export interface FileRouteTypes {
     | '/calendar'
     | '/dashboard'
     | '/inbox'
+    | '/published'
     | '/studio/$postId'
     | '/studio/'
   fileRoutesByTo: FileRoutesByTo
@@ -139,6 +149,7 @@ export interface FileRouteTypes {
     | '/calendar'
     | '/dashboard'
     | '/inbox'
+    | '/published'
     | '/studio/$postId'
     | '/studio'
   id:
@@ -152,6 +163,7 @@ export interface FileRouteTypes {
     | '/_authenticated/calendar'
     | '/_authenticated/dashboard'
     | '/_authenticated/inbox'
+    | '/_authenticated/published'
     | '/_authenticated/studio/$postId'
     | '/_authenticated/studio/'
   fileRoutesById: FileRoutesById
@@ -229,6 +241,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedInboxRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/published': {
+      id: '/_authenticated/published'
+      path: '/published'
+      fullPath: '/published'
+      preLoaderRoute: typeof AuthenticatedPublishedRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/studio/': {
       id: '/_authenticated/studio/'
       path: '/studio'
@@ -251,6 +270,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedCalendarRoute: typeof AuthenticatedCalendarRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedInboxRoute: typeof AuthenticatedInboxRoute
+  AuthenticatedPublishedRoute: typeof AuthenticatedPublishedRoute
   AuthenticatedStudioPostIdRoute: typeof AuthenticatedStudioPostIdRoute
   AuthenticatedStudioIndexRoute: typeof AuthenticatedStudioIndexRoute
 }
@@ -260,6 +280,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedCalendarRoute: AuthenticatedCalendarRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedInboxRoute: AuthenticatedInboxRoute,
+  AuthenticatedPublishedRoute: AuthenticatedPublishedRoute,
   AuthenticatedStudioPostIdRoute: AuthenticatedStudioPostIdRoute,
   AuthenticatedStudioIndexRoute: AuthenticatedStudioIndexRoute,
 }
