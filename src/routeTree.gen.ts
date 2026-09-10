@@ -20,6 +20,7 @@ import { Route as AuthenticatedCalendarRouteImport } from './routes/_authenticat
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedInboxRouteImport } from './routes/_authenticated/inbox'
 import { Route as AuthenticatedPublishedRouteImport } from './routes/_authenticated/published'
+import { Route as AuthenticatedSourcesRouteImport } from './routes/_authenticated/sources'
 import { Route as AuthenticatedStudioIndexRouteImport } from './routes/_authenticated/studio.index'
 import { Route as AuthenticatedStudioPostIdRouteImport } from './routes/_authenticated/studio.$postId'
 
@@ -77,6 +78,11 @@ const AuthenticatedPublishedRoute = AuthenticatedPublishedRouteImport.update({
   path: '/published',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedSourcesRoute = AuthenticatedSourcesRouteImport.update({
+  id: '/sources',
+  path: '/sources',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedStudioIndexRoute =
   AuthenticatedStudioIndexRouteImport.update({
     id: '/studio/',
@@ -101,6 +107,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/inbox': typeof AuthenticatedInboxRoute
   '/published': typeof AuthenticatedPublishedRoute
+  '/sources': typeof AuthenticatedSourcesRoute
   '/studio/$postId': typeof AuthenticatedStudioPostIdRoute
   '/studio/': typeof AuthenticatedStudioIndexRoute
 }
@@ -115,6 +122,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/inbox': typeof AuthenticatedInboxRoute
   '/published': typeof AuthenticatedPublishedRoute
+  '/sources': typeof AuthenticatedSourcesRoute
   '/studio/$postId': typeof AuthenticatedStudioPostIdRoute
   '/studio': typeof AuthenticatedStudioIndexRoute
 }
@@ -131,6 +139,7 @@ export interface FileRoutesById {
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/inbox': typeof AuthenticatedInboxRoute
   '/_authenticated/published': typeof AuthenticatedPublishedRoute
+  '/_authenticated/sources': typeof AuthenticatedSourcesRoute
   '/_authenticated/studio/$postId': typeof AuthenticatedStudioPostIdRoute
   '/_authenticated/studio/': typeof AuthenticatedStudioIndexRoute
 }
@@ -147,6 +156,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/inbox'
     | '/published'
+    | '/sources'
     | '/studio/$postId'
     | '/studio/'
   fileRoutesByTo: FileRoutesByTo
@@ -161,6 +171,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/inbox'
     | '/published'
+    | '/sources'
     | '/studio/$postId'
     | '/studio'
   id:
@@ -176,6 +187,7 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard'
     | '/_authenticated/inbox'
     | '/_authenticated/published'
+    | '/_authenticated/sources'
     | '/_authenticated/studio/$postId'
     | '/_authenticated/studio/'
   fileRoutesById: FileRoutesById
@@ -267,6 +279,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPublishedRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/sources': {
+      id: '/_authenticated/sources'
+      path: '/sources'
+      fullPath: '/sources'
+      preLoaderRoute: typeof AuthenticatedSourcesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/studio/': {
       id: '/_authenticated/studio/'
       path: '/studio'
@@ -291,6 +310,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedInboxRoute: typeof AuthenticatedInboxRoute
   AuthenticatedPublishedRoute: typeof AuthenticatedPublishedRoute
+  AuthenticatedSourcesRoute: typeof AuthenticatedSourcesRoute
   AuthenticatedStudioPostIdRoute: typeof AuthenticatedStudioPostIdRoute
   AuthenticatedStudioIndexRoute: typeof AuthenticatedStudioIndexRoute
 }
@@ -302,6 +322,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedInboxRoute: AuthenticatedInboxRoute,
   AuthenticatedPublishedRoute: AuthenticatedPublishedRoute,
+  AuthenticatedSourcesRoute: AuthenticatedSourcesRoute,
   AuthenticatedStudioPostIdRoute: AuthenticatedStudioPostIdRoute,
   AuthenticatedStudioIndexRoute: AuthenticatedStudioIndexRoute,
 }
