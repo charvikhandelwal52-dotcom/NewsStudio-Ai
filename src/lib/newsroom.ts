@@ -40,9 +40,9 @@ export const DECISION_LABELS: Record<ApprovalDecision, string> = {
   rejected: "Rejected",
 };
 
-function unwrap<T>({ data, error }: { data: T | null; error: { message: string } | null }): T {
-  if (error) throw new Error(error.message);
-  return data as T;
+function unwrap<T>(result: { data: T; error: { message: string } | null }): NonNullable<T> {
+  if (result.error) throw new Error(result.error.message);
+  return result.data as NonNullable<T>;
 }
 
 /* --------------------------------- queries -------------------------------- */
